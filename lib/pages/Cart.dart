@@ -239,7 +239,7 @@ class _CartpageState extends State<Cartpage> {
                         name: 'John Doe',       // Provide required arguments
                         phone: '123-456-7890',
                         address: '123 Main St',
-                        cartList: cart.getItem,
+                        cart: cart.getItem,
                       ),
                     ),
                   );

@@ -26,6 +26,8 @@ class OrderModel {
             : List<Product>.from(
                 json["products"]!.map((x) => Product.fromJson(x))),
       );
+
+  get totalprice => null;
   Map<String, dynamic> toJson() => {
         "id": id,
         "username": username,

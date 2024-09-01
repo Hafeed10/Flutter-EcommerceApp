@@ -25,9 +25,39 @@ class OrderDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
-        title: const Text("Order Details"),
-        backgroundColor: const Color.fromARGB(255, 244, 239, 239),
+        elevation: 0,
+        backgroundColor: Colors.grey.shade100,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: const Text(
+          "Order Details",
+          style: TextStyle(
+            fontSize: 25,
+            color: Colors.black,
+          ),
+        ),
+        actions: [
+          cart.getItem.isEmpty
+              ? const SizedBox()
+              : IconButton(
+                  onPressed: () {
+                    cart.clearCart(); // Clear the cart when pressed
+                  },
+                  icon: const Icon(
+                    Icons.delete_forever_rounded,
+                    color: Color.fromARGB(255, 56, 55, 55),
+                  ),
+                ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -76,12 +106,29 @@ class OrderDetailsPage extends StatelessWidget {
                               style: const TextStyle(color: Color.fromARGB(255, 219, 21, 21)),
                             ),
                             trailing: CircleAvatar(
-                              backgroundColor: const Color.fromARGB(255, 127, 129, 129),
-                              child: Text(
-                                item.quantity.toString(),
-                                style: const TextStyle(color: Colors.white),
-                              ),
+                            backgroundColor: const Color.fromARGB(255, 61, 47, 50),
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Icon(
+                                  Icons.money_off_csred_rounded,
+                                  color: Colors.white,
+                                  size: 24,
+                                ),
+                                Positioned(
+                                  bottom: 4,
+                                  child: FittedBox(
+                                    child: Text(
+                                      item.quantity.toString(),
+                                      style: const TextStyle(color: Colors.white, fontSize: 12),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
+                          ),
+  
+
                           ),
                         );
                       },

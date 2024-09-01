@@ -10,14 +10,14 @@ class CheckoutPage extends StatefulWidget {
   final String name;
   final String phone;
   final String address;
-  final List<CartProductModel> cartList;
+  final List<CartProductModel> cart;
 
   const CheckoutPage({
     super.key,
     required this.name,
     required this.phone,
     required this.address,
-    required this.cartList,
+    required this.cart,
   });
 
   @override
@@ -30,7 +30,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
   @override
   Widget build(BuildContext context) {
-    final cart = Provider.of<Cart>(context); // Access the cart provider
+    final cart = Provider.of<Cart>(context); 
+    final vm = Provider.of<Cart>(context, listen: false);
 
     // Use the values passed from the constructor
     String name = widget.name;
@@ -95,7 +96,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text(name),
+                          Text(name.toString()),
                         ],
                       ),
                       const SizedBox(height: 10),
@@ -108,7 +109,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text(phone),
+                          Text(phone.toString())
                         ],
                       ),
                       const SizedBox(height: 10),
@@ -122,6 +123,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          
                           Expanded(
                             child: Text(
                               address,
@@ -176,13 +178,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
           context,
           MaterialPageRoute(
             builder: (context) => PaymentScreen(
-              cart: widget.cartList,
+              cart: widget.cart,
               amount: cart.totalprice.toString(),
-              paymentmethod: paymentMethod,
-              date: datetime,
-              name: name,
-              phone: phone,
-              address: address,
+              paymentmethod: paymentMethod.toString(),
+              date: datetime.toString(),
+              name: name.toString(),
+              phone: phone.toString(),
+              address: address.toString(),
             ),
           ),
         ).then((paymentSuccess) {
@@ -191,22 +193,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
           }
         });
       } else if (paymentMethod == 'Cash on delivery') {
-        orderPlace(cart, cart.totalprice.toString(), datetime, name, address, phone, paymentMethod);
+        orderPlace(cart, vm.totalprice.toString(),
+         paymentMethod!, datetime, name!, address!, phone!
+         );
 
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => OrderDetailsPage(
-              cart: cart,
-              totalPrice: cart.totalprice.toString(),
-              datetime: datetime,
-              name: name,
-              address: address,
-              phone: phone,
-              paymentMethod: paymentMethod,
-            ),
-          ),
-        );
+      
       }
     },
     child: Container(
