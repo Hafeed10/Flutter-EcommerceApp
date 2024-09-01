@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/provider/provider_class.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // Import intl package for date formatting
+import 'package:intl/intl.dart';
 
 class OrderDetailsPage extends StatelessWidget {
   final Cart cart;
@@ -25,7 +25,7 @@ class OrderDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor: Colors.grey.shade100,
+      backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.grey.shade100,
@@ -106,27 +106,27 @@ class OrderDetailsPage extends StatelessWidget {
                               style: const TextStyle(color: Color.fromARGB(255, 219, 21, 21)),
                             ),
                             trailing: CircleAvatar(
-                            backgroundColor: const Color.fromARGB(255, 61, 47, 50),
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Icon(
-                                  Icons.money_off_csred_rounded,
-                                  color: Colors.white,
-                                  size: 24,
-                                ),
-                                Positioned(
-                                  bottom: 4,
-                                  child: FittedBox(
-                                    child: Text(
-                                      item.qty.toString(),
-                                      style: const TextStyle(color: Colors.white, fontSize: 12),
+                              backgroundColor: const Color.fromARGB(255, 61, 47, 50),
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  const Icon(
+                                    Icons.money_off_csred_rounded,
+                                    color: Colors.white,
+                                    size: 24,
+                                  ),
+                                  Positioned(
+                                    bottom: 4,
+                                    child: FittedBox(
+                                      child: Text(
+                                        item.qty.toString(),
+                                        style: const TextStyle(color: Colors.white, fontSize: 12),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
                           ),
                         );
                       },

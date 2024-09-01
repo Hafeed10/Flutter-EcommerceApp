@@ -188,9 +188,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
             ),
           ),
         ).then((paymentSuccess) {
-          // if (paymentSuccess == true) {
-          //   orderPlace(cart, cart.totalprice.toString(), datetime, name, address, phone, paymentMethod);
-          // }
+          if (paymentSuccess == true) {
+            orderPlace(cart, cart.totalprice.toString(), datetime, name, address, phone, paymentMethod);
+          }
         });
       } else if (paymentMethod == 'Cash on delivery') {
         orderPlace(cart, vm.totalprice.toString(),
@@ -225,13 +225,46 @@ class _CheckoutPageState extends State<CheckoutPage> {
   }
 
   // Order placement logic
-  void orderPlace(Cart cart, String amount, String date, String name, String address, String phone, String paymentMethod) {
-    log('Order placed with details: $name, $address, $phone, $paymentMethod, $amount, $date');
-    
-    // Clear the cart after placing the order
-    cart.clearCart();
-    
-    // Optionally, navigate to an Order confirmation page or show a confirmation dialog
-   
-  }
+ void orderPlace(Cart cart, String amount, String date, String name, String address, String phone, String paymentMethod) {
+  log('Order placed with details: $name, $address, $phone, $paymentMethod, $amount, $date');
+  
+  // Clear the cart after placing the order
+  cart.clearCart();
+
+  // Show a confirmation dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Order Confirmation'),
+        content: const Text('Your order has been placed successfully!'),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+              
+              // Navigate to the OrderDetailsPage
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => OrderDetailsPage(
+                    cart: cart,
+                    name: name, // Provide required arguments
+                    phone: phone,
+                    address: address,
+                    totalPrice: amount, // Pass totalPrice if it's needed in OrderDetailsPage
+                    datetime: date,
+                    paymentMethod: paymentMethod, // Pass paymentMethod if it's needed in OrderDetailsPage
+                    
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
 }
