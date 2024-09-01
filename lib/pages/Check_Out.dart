@@ -188,9 +188,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
             ),
           ),
         ).then((paymentSuccess) {
-          if (paymentSuccess == true) {
-            orderPlace(cart, cart.totalprice.toString(), datetime, name, address, phone, paymentMethod);
-          }
+          // if (paymentSuccess == true) {
+          //   orderPlace(cart, cart.totalprice.toString(), datetime, name, address, phone, paymentMethod);
+          // }
         });
       } else if (paymentMethod == 'Cash on delivery') {
         orderPlace(cart, vm.totalprice.toString(),

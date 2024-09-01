@@ -119,7 +119,7 @@ class OrderDetailsPage extends StatelessWidget {
                                   bottom: 4,
                                   child: FittedBox(
                                     child: Text(
-                                      item.quantity.toString(),
+                                      item.qty.toString(),
                                       style: const TextStyle(color: Colors.white, fontSize: 12),
                                     ),
                                   ),
@@ -127,8 +127,6 @@ class OrderDetailsPage extends StatelessWidget {
                               ],
                             ),
                           ),
-  
-
                           ),
                         );
                       },
@@ -154,7 +152,7 @@ class OrderDetailsPage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
-          Icon(icon, color: const Color.fromARGB(255, 78, 80, 79)),
+          Icon(icon, color: const Color.fromARGB(255, 91, 127, 125)),
           const SizedBox(width: 10),
           Text(
             '$label: ',
