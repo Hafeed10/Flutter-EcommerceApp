@@ -194,7 +194,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
         });
       } else if (paymentMethod == 'Cash on delivery') {
         orderPlace(cart, vm.totalprice.toString(),
-         paymentMethod!, datetime, name!, address!, phone!
+          name!, paymentMethod!, datetime, address!, phone!
          );
 
       
